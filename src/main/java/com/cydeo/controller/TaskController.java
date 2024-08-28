@@ -1,8 +1,8 @@
 package com.cydeo.controller;
 
+import com.cydeo.dto.TaskDTO;
 import com.cydeo.dto.wrapper.ExceptionWrapper;
 import com.cydeo.dto.wrapper.ResponseWrapper;
-import com.cydeo.dto.TaskDTO;
 import com.cydeo.enums.Status;
 import com.cydeo.service.TaskService;
 import com.cydeo.util.SwaggerExamples;
@@ -251,7 +251,7 @@ public class TaskController {
             @ApiResponse(responseCode = "403", description = "Access is denied",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionWrapper.class),
                             examples = @ExampleObject(value = SwaggerExamples.ACCESS_DENIED_FORBIDDEN_RESPONSE_EXAMPLE)))})
-    public ResponseEntity<ResponseWrapper> getNonCompletedCountByAssignedEmployeeByAssignedEmployee(@PathVariable("assignedEmployee") String assignedEmployee) {
+    public ResponseEntity<ResponseWrapper> getNonCompletedCountByAssignedEmployee(@PathVariable("assignedEmployee") String assignedEmployee) {
 
         Integer taskCount = taskService.countNonCompletedByAssignedEmployee(assignedEmployee);
 
