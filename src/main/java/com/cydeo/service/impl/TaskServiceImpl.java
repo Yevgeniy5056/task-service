@@ -248,10 +248,16 @@ public class TaskServiceImpl implements TaskService {
     }
 
     private void checkCreateAccessToTaskProject(String loggedInUserUsername, String projectCode) {
-
-        //TODO Check if logged in user has access to the project of the task to create tasks for that project
-        //     by asking about it to project-service
-
+        ResponseEntity<ProjectResponse> projectResponse = projectClient.getManagerByProject(projectCode);
+        if (Objects.requireNonNull(projectResponse.getBody()).isSuccess()) {
+            String taskProjectManager = (String) projectResponse.getBody().getData();
+            if (!loggedInUserUsername.equals(taskProjectManager)) {
+                throw new ProjectAccessDeniedException(
+                        "Access denied, make sure that you are working on your own project");
+            }
+        } else {
+            throw new ManagerNotRetrievedException("Manager can not be retrieved");
+        }
     }
 
     private void checkManagerAccessToTaskProject(String loggedInUserUsername, Task task) {
