@@ -24,6 +24,7 @@
         <keycloak.version>18.0.0</keycloak.version>
         <model-mapper.version>3.1.0</model-mapper.version>
         <spring-cloud.version>2.2.6.RELEASE</spring-cloud.version>
+        <micrometer.version>1.9.0</micrometer.version>
     </properties>
 
     <dependencies>
@@ -137,6 +138,16 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-sleuth-zipkin</artifactId>
             <version>${spring-cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
+            <version>${micrometer.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <version>${micrometer.version}</version>
         </dependency>
     </dependencies>
 
